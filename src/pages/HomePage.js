@@ -5,8 +5,8 @@ import { gsap } from 'gsap';
 
 function HomePage() {
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth(); // Get authentication status from context
-  const aboutRef = useRef(null); // Create a ref for the "About" section
+  const { isAuthenticated } = useAuth();
+  const aboutRef = useRef(null);
 
   const handleStartChatbot = () => {
     if (isAuthenticated) {
@@ -17,10 +17,9 @@ function HomePage() {
   };
 
   useEffect(() => {
-    // Animate the about section on page load using gsap.to
     gsap.to(aboutRef.current, { 
-      opacity: 1, // Animate to full opacity
-      y: -230, // Animate to its original position
+      opacity: 1, 
+      y: -230,
       duration: 1.5, 
       ease: "power3.out" 
     });

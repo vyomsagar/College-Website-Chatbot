@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import { useNavigate } from 'react-router-dom';
 import { Client } from '@botpress/client';
 
 const UploadDocumentPage = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadStatus, setUploadStatus] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
 
   const client = new Client({
-    token: 'bp_pat_5IVTTxIBmFeKApRGWygAIX7qiI42B3M0YGNi', // Replace with your actual token
+    token: 'bp_pat_5IVTTxIBmFeKApRGWygAIX7qiI42B3M0YGNi',
     botId: '8f3216db-30f5-4bb0-b684-21a200c4911a',
     workspaceId: 'wkspace_01J7H7QBSS7M6RA09SYF6QRVJW'
   });
@@ -28,13 +28,12 @@ const UploadDocumentPage = () => {
     setLoading(true);
     setUploadStatus('');
     
-    // Read the content of the selected file
+
     const fileReader = new FileReader();
     fileReader.onload = async (e) => {
       const fileContent = e.target.result;
       
       try {
-        // Upload the file to Botpress
         const { file } = await client.uploadFile({
           key: 'kb-2f0a7ea639/my-file.txt',
   accessPolicies: [],
@@ -49,8 +48,7 @@ const UploadDocumentPage = () => {
         
         setUploadStatus(`File "${file.name}" uploaded successfully.`);
         
-        // Redirect to ChatbotPage after successful upload
-        navigate('/chatbot'); // Navigate to the chatbot page
+        navigate('/chatbot');
       } catch (error) {
         setUploadStatus('Error uploading file.');
         console.error(error);
@@ -59,7 +57,6 @@ const UploadDocumentPage = () => {
       }
     };
 
-    // Read the file as text
     fileReader.readAsText(selectedFile);
   };
 
@@ -73,7 +70,7 @@ const UploadDocumentPage = () => {
             type="file"
             onChange={handleFileChange}
             className="mb-4"
-            accept=".txt,.pdf,.docx" // Adjust based on allowed file types
+            accept=".txt,.pdf,.docx"
           />
           
           <button

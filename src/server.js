@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -37,7 +36,13 @@ app.post('/login', async (req, res) => {
     const isValid = await bcrypt.compare(password, user.password);
     if (isValid) {
       const token = jwt.sign({ userId: user._id }, 'secretkey', { expiresIn: '1h' });
-      res.status(200).send({ token });
+      res.status(200).send({ 
+        token, 
+        user: { 
+          username: user.username, 
+          email: user.email 
+        } 
+      });
     } else {
       res.status(401).send({ message: 'Invalid username or password' });
     }

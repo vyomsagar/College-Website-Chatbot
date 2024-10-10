@@ -1,5 +1,3 @@
-// src/App.js
-
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
@@ -10,7 +8,7 @@ import ChatbotPage from './pages/ChatbotPage';
 import ProvideURL from './pages/ProvideURL';
 import Navigation from './components/Navigation';
 import AuthPage from './components/AuthPage';
-import NotFoundPage from './pages/NotFoundPage'; // Optional: 404 Page
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (

@@ -1,4 +1,3 @@
-// src/AuthPage.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext.js';
@@ -8,7 +7,7 @@ function AuthPage() {
   const [isSignIn, setIsSignIn] = useState(true);
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
   const navigate = useNavigate();
-  const { login } = useAuth(); // Get login function from context
+  const { login } = useAuth();
 
   const toggleAuth = () => {
     setIsSignIn(!isSignIn);
@@ -18,11 +17,10 @@ function AuthPage() {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const url = isSignIn ? 'http://192.168.56.1:5000/signin' : 'http://192.168.56.1:5000/register';
-
+  
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -31,12 +29,11 @@ function AuthPage() {
         },
         body: JSON.stringify(formData),
       });
-
+  
       if (response.ok) {
-        // Call login function from context
-        login();
-        alert(isSignIn ? 'Sign-in successful!' : 'Account created successfully!');
-        navigate('/'); // Redirect to homepage
+        const result = await response.json();
+        login({ name: result.user.name, email: result.user.email });
+        navigate('/');
       } else {
         const result = await response.json();
         alert(result.message || 'Failed to submit form.');
@@ -63,7 +60,7 @@ function AuthPage() {
       </div>
 
       {/* Sign In Form */}
-      
+      {isSignIn && (
         <div className={`absolute top-0 left-0 flex items-center justify-center bg-white z-10 h-[100%] w-[50%]`}>
           <div className="w-full max-w-sm">
             <div className="flex items-center justify-center flex-col">
@@ -105,10 +102,10 @@ function AuthPage() {
             </div>
           </div>
         </div>
-     
+      )}
 
       {/* Sign Up Form */}
-      
+      {!isSignIn && (
         <div className={`absolute top-0 right-0 w-1/2 h-full flex items-center justify-center bg-white z-10`}>
           <div className="w-full max-w-sm">
             <div className="flex items-center justify-center flex-col">
@@ -158,7 +155,7 @@ function AuthPage() {
             </div>
           </div>
         </div>
-      
+      )}
     </div>
   );
 }

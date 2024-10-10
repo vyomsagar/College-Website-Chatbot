@@ -1,4 +1,3 @@
-// src/pages/ProvideURL.js
 import React, { useState } from 'react';
 import { Client } from '@botpress/client';
 
@@ -24,13 +23,12 @@ const ProvideURL = () => {
     setUploadStatus('');
 
     try {
-      // Use a CORS proxy for development
       const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
       const response = await fetch(proxyUrl + url);
       const content = await response.text();
       const size = content.length;
 
-      // Save URL to Botpress
+
       await client.upsertFile({
         key: `urls/${encodeURIComponent(url)}`,
         accessPolicies: [],
@@ -44,7 +42,6 @@ const ProvideURL = () => {
         }
       });
       setUploadStatus(`URL "${url}" added successfully.`);
-      // Redirect to Chatbot page
       window.location.href = '/chatbot';
     } catch (error) {
       setUploadStatus('Error adding URL.');

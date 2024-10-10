@@ -1,28 +1,25 @@
-// src/contexts/AuthContext.js
 import React, { createContext, useState, useContext } from 'react';
 
-// Create a Context for authentication
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
 
-  const login = () => {
-    // Simulate a login
+  const login = (userInfo) => {
     setIsAuthenticated(true);
-    // Set a token in localStorage
+    setUser(userInfo);
     localStorage.setItem('authToken', 'your_token_here');
   };
 
   const logout = () => {
-    // Simulate a logout
     setIsAuthenticated(false);
-    // Remove token from localStorage
+    setUser(null);
     localStorage.removeItem('authToken');
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
