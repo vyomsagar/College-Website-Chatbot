@@ -14,6 +14,7 @@ function App() {
         🚧 This is a student-made project by <strong>Vyom Sagar</strong> for
         educational purposes. It is not the official BBIT website.
       </div>
+      
 
       {/* 🔷 BBIT Top Navigation */}
       <header className="bg-[#007DC5] text-white text-sm font-medium">
@@ -46,9 +47,10 @@ function App() {
 
           {/* 🔹 Right: Apply Button + Social Icons */}
           <div className="flex items-center gap-3">
-            <div className="bg-[#b71c50] px-3 py-1 text-white font-semibold rounded-md text-center leading-tight hover:opacity-90">
+            <a href="https://www.bbit.edu.in/apply-now-admission"><div className="bg-[#b71c50] px-3 py-1 text-white font-semibold rounded-md text-center leading-tight hover:opacity-90">
               Apply <br /> Now
             </div>
+            </a>
             <a href="#">
               <i className="fab fa-facebook-f"></i>
             </a>
@@ -100,12 +102,16 @@ function App() {
           />
         </SwiperSlide>
       </Swiper>
-
+      
       {/* 💬 Chatbot Usage Instruction */}
       <div className="bg-blue-50 border border-blue-300 text-blue-900 text-center font-semibold text-xl p-3 rounded-md mt-6 mx-4">
         💡 <strong>Tip:</strong> To get help from the chatbot, just say{" "}
         <span className="text-blue-700">"Hi"</span> first, then ask any question
         related to <strong>BBIT</strong>.
+      </div>
+      <div className="bg-blue-100 border-b border-blue-300 text-sl text-center p-6">
+        <div className="text-xl text-blue-900"><strong>About the Chatbot</strong></div> for
+        This website features an intelligent chatbot developed using Botpress, designed to assist users with comprehensive information about the Budge Budge Institute of Technology (BBIT). Whether you're curious about admission procedures, eligibility criteria, faculty members, or academic offerings — the chatbot is ready to help. Simply start by saying "Hi" and ask any question related to BBIT. It responds with detailed, step-by-step guidance and even provides official links when needed. This chatbot was built as part of a student project by Vyom Sagar to enhance the user experience and demonstrate the power of AI-driven support in education.
       </div>
 
       {/* 🔷 Info Section */}
